@@ -100,7 +100,7 @@ The notebook demonstrates that comprehensive data preprocessing significantly im
 
 If you use this code in your research, please cite the following paper:
 
-> Das, S., & Maji, S. (2024). *Impact of Comprehensive Data Preprocessing on Predictive Modeling of COVID-19 Mortality*. Journal Name, Volume(Issue), pages. doi:xx.xxxx/xxxxx
+> Das, S., & Maji, S. (2024). *Impact of comprehensive data preprocessing on predictive modelling of COVID-19 mortality*. arXiv [Cs.LG]. Retrieved from https://arxiv.org/abs/2408.08142
 
 ## Usage
 
