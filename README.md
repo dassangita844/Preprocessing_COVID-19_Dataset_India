@@ -1,114 +1,157 @@
-
 # Impact of Comprehensive Data Preprocessing on Predictive Modelling of COVID-19 Mortality
 
 ### Authors: **Sangita Das & Subhrajyoti Maji**
 
+---
+
 ## Overview
 
-This repository contains a Jupyter notebook that demonstrates the impact of comprehensive data preprocessing on the predictive modeling of COVID-19 mortality. The project focuses on leveraging advanced preprocessing techniques to improve the reliability and accuracy of predictions, comparing the performance of various machine learning models trained on custom versus standard preprocessing pipelines.
+This repository contains a Jupyter notebook demonstrating the impact of comprehensive data preprocessing on predictive modeling of COVID-19 mortality. The work investigates how structured preprocessing pipelines influence model performance, stability, and reliability across multiple machine learning models.
+
+The study compares a **standard preprocessing pipeline** with a **custom-designed pipeline** that incorporates domain-aware feature construction, computational dependency resolution, and structured outlier handling.
+
+---
 
 ## Objectives
 
-- **Explore Computational Dependencies:** Examine relationships among dataset columns to accurately fill in missing values and address inconsistencies through custom computations.
-- **Custom Preprocessing Pipeline:** Construct a tailored preprocessing pipeline that includes various custom transformers to clean, normalize, and enhance the raw data.
-- **Impact Analysis:** Assess and compare the performance of multiple linear and non-linear models using custom preprocessing versus standard preprocessing, highlighting the benefits of detailed preprocessing steps.
+- **Explore Computational Dependencies:** Identify and exploit relationships among dataset variables to improve feature consistency and missing value handling.
+- **Custom Preprocessing Pipeline:** Develop a structured preprocessing workflow including transformation, correction, and feature refinement steps.
+- **Impact Analysis:** Evaluate multiple regression models under different preprocessing regimes and compare performance using RMSE, R², and stability metrics.
+
+---
 
 ## Data Source
 
-The dataset used in this project is sourced from:
+The dataset is sourced from:
 
-- **Our World in Data (OWID) COVID-19 Dataset**: Available at [Our World in Data](https://github.com/owid/covid-19-data/tree/master/public/data). The dataset provides comprehensive global data on COVID-19 cases, deaths, vaccinations, and other related metrics, serving as the foundation for the predictive modeling and analysis conducted in this notebook. When using this data, please cite as follows:
+- **Our World in Data (OWID) COVID-19 Dataset**  
+  https://github.com/owid/covid-19-data/tree/master/public/data  
 
-  > Edouard Mathieu, Hannah Ritchie, Lucas Rodés-Guirao, Cameron Appel, Charlie Giattino, Joe Hasell, Bobbie Macdonald, Saloni Dattani, Diana Beltekian, Esteban Ortiz-Ospina and Max Roser (2020) - "Coronavirus Pandemic (COVID-19)". Published online at OurWorldInData.org. Retrieved from: 'https://ourworldindata.org/coronavirus' [Online Resource]
+Citation:
+> Mathieu, E. et al. (2020). *Coronavirus Pandemic (COVID-19)*. OurWorldInData.org.
+
+---
+
+## Repository Contents
+
+- `Enhanced_predictive.ipynb` — Main experimental notebook  
+- `data/` — Raw dataset files  
+- `standard/` — Outputs from standard preprocessing pipeline  
+- `custom/` — Outputs from custom preprocessing pipeline  
+- `README.md` — Documentation  
+- `LICENSE` — License file  
+
+Both `standard/` and `custom/` directories include:
+- trained models  
+- processed datasets  
+- feature importance tables  
+- evaluation results  
+
+---
+
+## Notebook Execution & Display Notes
+
+### ⚠️ Important Rendering Limitation (GitHub + VS Code)
+
+This notebook uses **ipywidgets-based interactive visualisations**.
+
+- On **GitHub**, widget outputs may not render correctly and can show:
+  > `Invalid Notebook`
+
+- This is a known limitation of GitHub’s notebook renderer.
+
+- In **VS Code**, widgets may not persist correctly after reopening the notebook:
+  - some initial widget-based outputs may not render automatically
+  - non-widget outputs (tables, plots, model results) remain fully accessible without re-running
+
+### ✔️ Recommended Usage
+
+To fully experience the notebook:
+1. Open in Jupyter Notebook or JupyterLab (or VS Code with active kernel)
+2. Run all cells sequentially after opening
+3. Ensure `ipywidgets` support is enabled
+
+---
 
 ## Installation
 
-To run the notebook and reproduce the results, install the required Python packages:
-
 ```bash
-!pip install pandas matplotlib seaborn ipywidgets plotly qgrid
+pip install pandas matplotlib seaborn ipywidgets plotly qgrid
 ```
 
-## Repository Structure
-
-
-```plaintext
-├── data/
-│   ├── original_india_data.csv                   # Original data for India from OWID
-│
-├── standard/                                  
-│   ├── models/                                   # Trained models using the standard pipeline
-│   ├── plots/                                    # Plots for learning curves and global outlier processing
-│   ├── tables/                                                            
-│   │   ├── feature_importance/                   # Feature importance tables from round 0 to 21
-│   │   ├── feature_correlation_with_target.csv   # Correlation of features with the target variable
-│   │   ├── standard_processed_india_data.csv     # Processed data after applying the standard preprocessing pipeline
-│   │   ├── standard_results.csv                  # Results from models trained with standard preprocessing
-│
-├── custom/                                  
-│   ├── models/                                   # Trained models using the custom pipeline
-│   ├── plots/                                    # Plots for learning curves, computation and local outlier processing, and weekly pattern imputation
-│   ├── tables/                                                             
-│   │   ├── feature_importance/                   # Feature importance tables from round 0 to 18
-│   │   ├── feature_correlation_with_target.csv   # Correlation of features with the target variable
-│   │   ├── custom_processed_india_data.csv       # Processed data after applying the custom preprocessing pipeline
-│   │   ├── custom_results.csv                    # Results from models trained with custom preprocessing
-│
-├── Enhanced_predictive.ipynb                     # Main notebook for preprocessing and modeling
-├── README.md                                     # Project overview and instructions
-└── LICENSE                                       # License information
-
-```
+---
 
 ## Notebook Structure
 
-1. **Introduction**
-   - Problem Overview
-   - Objectives
+1. Introduction  
+2. Setup and Dependencies  
+3. Data Preprocessing  
+   - Standard pipeline  
+   - Custom pipeline  
+4. Modeling  
+5. Results and Evaluation  
+   - RMSE, R², RMSE variance  
+6. Conclusion  
 
-2. **Setup**
-   - Installation of required packages
-   - Loading data
-
-3. **Data Preprocessing**
-   - Standard preprocessing pipeline
-      - Handling missing values and outliers
-      - Iterative feature selection
-
-   - Custom preprocessing pipeline
-      - Weekly pattern imputation
-      - Local outlier processing
-      - Computation processing
-      - Iterative feature selection
-
-4. **Modeling**
-   - Training multiple machine learning models
-   - Comparing models trained on custom vs. standard preprocessing
-
-5. **Results and Analysis**
-   - Performance metrics (Test RMSE, Test R², RMSE Variance)
-   - Impact of preprocessing on model performance
-
-6. **Conclusion**
-   - Summary of findings
+---
 
 ## Results
 
-The notebook demonstrates that comprehensive data preprocessing significantly improves the performance of predictive models in terms of accuracy and reliability. Custom preprocessing pipelines that take into account specific dataset characteristics yield better results compared to standard approaches.
+The study demonstrates that **comprehensive data preprocessing significantly improves predictive performance and stability**, often exceeding gains obtained from model complexity alone.
 
-## Citation
+Key improvements observed:
+- Lower prediction error (RMSE reduction)
+- Higher model stability (lower variance across runs)
+- Improved feature relevance consistency
 
-If you use this code in your research, please cite the following paper:
+---
 
-> Das, S., & Maji, S. (2024). *Impact of Comprehensive Data Preprocessing on Predictive Modelling of COVID-19 Mortality*. arXiv preprint arXiv:2408.08142. Retrieved from https://arxiv.org/abs/2408.08142
+## Publications
 
-## Usage
+This project has resulted in two research publications:
 
-To use the notebook:
+### 1. Preprint (arXiv)
 
-1. Clone the repository.
-2. Install the necessary packages using the provided `pip` command.
-3. Open the notebook in Jupyter and execute the cells to reproduce the results.
+**Impact of Comprehensive Data Preprocessing on Predictive Modelling of COVID-19 Mortality**  
+Das, S., & Maji, S. (2024)  
+arXiv preprint: https://arxiv.org/abs/2408.08142  
+
+This work presents the initial experimental findings showing that structured preprocessing pipelines significantly improve predictive performance for COVID-19 mortality modeling.
+
+---
+
+### 2. Journal Publication
+
+**From Raw Data to Reliable Predictions: The Significance of Data Processing in COVID-19 Modelling**  
+Das, S., & Maji, S. (2026)  
+Asian Journal of Research in Computer Science, 19(2), 75–96  
+
+This work extends the initial study by formalizing the preprocessing framework and demonstrating that data processing quality is a primary determinant of predictive reliability across models.
+
+---
+
+## BibTeX References
+
+```bibtex
+@article{das2024impact,
+  title={Impact of Comprehensive Data Preprocessing on Predictive Modelling of COVID-19 Mortality},
+  author={Das, Sangita and Maji, Subhrajyoti},
+  journal={arXiv preprint arXiv:2408.08142},
+  year={2024}
+}
+
+@article{das2026raw,
+  title={From Raw Data to Reliable Predictions: The Significance of Data Processing in COVID-19 Modelling},
+  author={Das, Sangita and Maji, Subhrajyoti},
+  journal={Asian Journal of Research in Computer Science},
+  volume={19},
+  number={2},
+  pages={75--96},
+  year={2026}
+}
+```
+
+---
 
 ## Contributing
 
